@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aurthy&Anam English Academy</title>
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            background-color: #f4f4f4; 
+            color: #333; 
+            margin: 0; 
+            padding: 0; 
+            perspective: 1000px; /* Global 3D perspective for depth */
+        }
+        header { 
+            background-color: #007bff; 
+            color: white; 
+            text-align: center; 
+            padding: 20px; 
+            transform: rotateX(2deg) rotateY(1deg); /* Subtle 3D rotation */
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2); /* 3D shadow */
+            transition: transform 0.5s ease; /* Smooth transition */
+        }
+        header:hover { 
+            transform: rotateX(0deg) rotateY(0deg) scale(1.02); /* Gentle 3D hover effect */
+        }
+        .container { 
+            max-width: 800px; 
+            margin: 20px auto; 
+            padding: 20px; 
+            background: white; 
+            border-radius: 8px; 
+            box-shadow: 0 0 10px rgba(0,0,0,0.1); 
+            transform-style: preserve-3d; /* Preserve 3D for child elements */
+        }
+        form { 
+            display: flex; 
+            flex-direction: column; 
+        }
+        label { 
+            margin-top: 10px; 
+        }
+        input, textarea { 
+            padding: 10px; 
+            margin-top: 5px; 
+            border: 1px solid #ccc; 
+            border-radius: 4px; 
+            transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth 3D hover transition */
+        }
+        input:hover, textarea:hover { 
+            transform: translateY(-3px) rotateX(2deg); /* Subtle 3D lift and tilt */
+            box-shadow: 0 3px 10px rgba(0,0,0,0.15); 
+        }
+        button { 
+            background-color: #007bff; 
+            color: white; 
+            padding: 10px; 
+            border: none; 
+            border-radius: 4px; 
+            cursor: pointer; 
+            margin-top: 20px; 
+            transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth 3D transition */
+        }
+        button:hover { 
+            transform: translateY(-5px) rotateY(3deg) scale(1.05); /* 3D hover effect */
+            box-shadow: 0 5px 15px rgba(0,0,0,0.25); 
+        }
+        .payment { 
+            margin-top: 20px; 
+            padding: 10px; 
+            background: #e9ecef; 
+            border-radius: 4px; 
+            opacity: 0; 
+            transform: translateY(30px) rotateX(5deg); /* Initial hidden 3D state */
+            transition: opacity 0.5s ease, transform 0.5s ease; /* Smooth 3D slide-in */
+        }
+        .payment.show { 
+            opacity: 1; 
+            transform: translateY(0) rotateX(0deg); /* Revealed 3D state */
+        }
+        .contact { 
+            margin-top: 20px; 
+            padding: 10px; 
+            background: #d4edda; 
+            border-radius: 4px; 
+            display: none; 
+            opacity: 0; 
+            transform: translateY(30px) rotateY(5deg); /* Initial hidden 3D state */
+            transition: opacity 0.5s ease, transform 0.5s ease; /* Smooth 3D slide-in */
+        }
+        .contact.show { 
+            display: block; 
+            opacity: 1; 
+            transform: translateY(0) rotateY(0deg); /* Revealed 3D state */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Aurthy&Anam English Academy</h1>
+        <p>Master English with Expert Guidance</p>
+    </header>
+    <div class="container">
+        <h2>Apply Now</h2>
+        <p>Fill out the form and pay 500 taka to join our academy.</p>
+        <form id="applicationForm">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+            
+            <label for="address">Address:</label>
+            <textarea id="address" name="address" required></textarea>
+            
+            <label for="age">Age:</label>
+            <input type="number" id="age" name="age" required>
+            
+            <label for="phone">Phone Number:</label>
+            <input type="tel" id="phone" name="phone" required>
+            
+            <button type="submit">Submit Application</button>
+        </form>
+        
+        <div class="payment" id="paymentSection">
+            <h3>Payment Instructions</h3>
+            <p>Pay 500 taka to confirm your application:</p>
+            <ul>
+                <li><strong>Bkash/Nagad:</strong> Send to +8801760645683. Reference: Your Name.</li>
+                <li><strong>Credit Card:</strong> Use Stripe link (integrate later) or contact us.</li>
+            </ul>
+            <p>After payment, click below to confirm.</p>
+            <button onclick="confirmPayment()">Confirm Payment</button>
+        </div>
+        
+        <div class="contact" id="contactSection">
+            <h3>Contact Information</h3>
+            <p>Contact with this number: +8801760645683</p>
+        </div>
+    </div>
+
+    <script>
+        // Show payment section with smooth 3D effect after form submission
+        document.getElementById('applicationForm').addEventListener('submit', function(e) {
+            e.preventDefault(); // Prevent default submit
+            const paymentSection = document.getElementById('paymentSection');
+            paymentSection.classList.add('show'); // Trigger 3D slide-in
+            alert('Form submitted! Proceed to payment.');
+        });
+
+        // On confirm payment, show contact section with smooth 3D effect
+        function confirmPayment() {
+            const contactSection = document.getElementById('contactSection');
+            contactSection.classList.add('show'); // Trigger 3D slide-in
+            alert('Payment confirmed. Welcome to Aurthy&Anam English Academy!');
+        }
+    </script>
+</body>
+</html>
